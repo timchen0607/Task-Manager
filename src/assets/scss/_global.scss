@@ -1,5 +1,4 @@
 @import "./_variables";
-@import "./mixin";
 
 html,
 body {
@@ -13,45 +12,25 @@ body {
   width: 100%;
   margin: auto;
   box-sizing: border-box;
-  max-width: 800px;
-
-  @include pad {
-    max-width: 720px;
-  }
-  @include mobile {
-    max-width: 540px;
-  }
+  max-width: min(800px, 95vw);
 }
 
 .title {
-  font-size: 1.6rem;
+  font-size: clamp(1.25rem, 2.5vw, 1.6rem);
   font-weight: bold;
-  text-align: center;
-  @include mobile {
-    font-size: 1.25rem;
-  }
 }
 .subtitle {
-  font-size: 1.25rem;
+  font-size: clamp(1.1rem, 2.5vw, 1.25rem);
   font-weight: bold;
-  @include mobile {
-    font-size: 1.1rem;
-  }
 }
 .remark,
 .placeholder {
   color: $c_secondary-dark;
-  line-height: 1.5rem;
-  @include mobile {
-    font-size: 1.25rem;
-  }
+  line-height: clamp(1.25rem, 2.5vw, 1.5rem);
 }
 .status {
   font-style: italic;
   color: $c_success;
-  font-size: 1.5rem;
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
   text-align: center;
-  @include mobile {
-    font-size: 1.25rem;
-  }
 }

@@ -14,7 +14,6 @@
 
 <style lang="scss">
 @import "./assets/scss/_variables.scss";
-@import "./assets/scss/_mixin.scss";
 
 .nav {
   background-color: $c_primary;
@@ -25,8 +24,9 @@
   }
   .title {
     width: 100%;
-    padding: 1.5rem;
+    padding: clamp(1rem, 2vw, 1.5rem) clamp(0.5px, 2vw, 1.5rem);
     color: $c_primary-dark;
+    text-align: center;
     text-decoration: none;
     &::after {
       content: "";
@@ -34,12 +34,9 @@
       bottom: 0;
       left: 10%;
       width: 80%;
-      height: 8px;
+      height: clamp(5px, 1vw, 8px);
       background-color: $c_primary-dark;
       opacity: 0;
-      @include mobile {
-        height: 5px;
-      }
     }
     &.router-link-active {
       position: relative;
@@ -48,9 +45,6 @@
         opacity: 1;
         transition: opacity 0.5s;
       }
-    }
-    @include mobile {
-      padding: 1rem 0.5rem;
     }
   }
 }
