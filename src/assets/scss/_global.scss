@@ -1,0 +1,45 @@
+@import "./_variables";
+@import "./mixin";
+
+html,
+body {
+  color: $c_dark;
+  font-size: 16px;
+  font-family: $font;
+  background-color: $c_secondary;
+}
+
+.container {
+  width: 100%;
+  margin: auto;
+  box-sizing: border-box;
+  max-width: 1000px;
+
+  @include pad {
+    max-width: 720px;
+  }
+  @include mobile {
+    max-width: 540px;
+  }
+}
+
+.title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+}
+.subtitle {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+.remark,
+.placeholder {
+  color: $c_secondary-dark;
+  line-height: 1.5rem;
+}
+.status {
+  font-style: italic;
+  color: $c_success;
+  font-size: 1.5rem;
+  text-align: center;
+}
