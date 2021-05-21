@@ -2,7 +2,7 @@
   <header class="nav">
     <div class="container">
       <router-link to="/" class="title" replace>My Tasks</router-link>
-      <router-link to="/In_Progress" class="title" replace>
+      <router-link to="/InProgress" class="title" replace>
         In Progress
       </router-link>
       <router-link to="/Completed" class="title" replace>Completed</router-link>

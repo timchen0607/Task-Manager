@@ -1,17 +1,17 @@
 import { createRouter, createWebHistory } from "vue-router";
-import My_Tasks from "./views/My_Tasks.vue";
+import MyTasks from "./views/MyTasks.vue";
 
 const routes = [
   {
     path: "/",
-    name: "My_Tasks",
-    component: My_Tasks,
+    name: "MyTasks",
+    component: MyTasks,
   },
   {
-    path: "/In_Progress",
-    name: "In_Progress",
+    path: "/InProgress",
+    name: "InProgress",
     component: () =>
-      import(/* webpackChunkName: "about" */ "./views/In_Progress.vue"),
+      import(/* webpackChunkName: "about" */ "./views/InProgress.vue"),
   },
   {
     path: "/Completed",
