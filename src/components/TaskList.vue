@@ -67,13 +67,19 @@ export default defineComponent({
     align-items: center;
     padding: clamp(1rem, 2.5vw, 1.5rem);
     &-check {
-      width: 20px;
-      height: 20px;
-      background-color: $c_light;
+      width: 25px;
+      height: 25px;
+      color: $c_light;
       font-size: 1rem;
       font-weight: unset;
       text-align: center;
-      line-height: 22px;
+      line-height: 27px;
+      background-color: $c_light;
+      border-radius: 3px;
+      cursor: pointer;
+      &.checked {
+        background-color: $c_primary;
+      }
     }
     &-title {
       flex: auto;
@@ -82,6 +88,7 @@ export default defineComponent({
     .fa-star,
     .fa-feather-alt {
       margin: 0 0.5rem;
+      cursor: pointer;
     }
   }
 }
