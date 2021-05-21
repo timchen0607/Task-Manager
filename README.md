@@ -1,24 +1,18 @@
-# task_manager
+# Task Manager
 
-## Project setup
-```
-npm install
-```
+### 專案開始
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+- 20210521
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### 基本說明
 
-### Lints and fixes files
-```
-npm run lint
-```
+- 使用 Vue 3 + Vue Router
+- 此為練習 Vue SPA 作品
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### 心得
+
+- 希望藉由這個作品練習製作 SPA 網站。
+
+### 成果展示
+
+- https://timchen0607.github.io/Task_Manager/
