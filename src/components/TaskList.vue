@@ -91,5 +91,32 @@ export default defineComponent({
       cursor: pointer;
     }
   }
+  &-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &-cancel,
+    &-save {
+      width: 100%;
+      font-size: 1.3rem;
+      padding: clamp(0.5rem, 1vw, 1rem);
+      border: unset;
+      transition: background-color 0.5s;
+      cursor: pointer;
+    }
+    &-cancel {
+      background-color: $c_light;
+      &:hover {
+        background-color: $c_secondary-light;
+      }
+    }
+    &-save {
+      color: $c_light;
+      background-color: $c_primary;
+      &:hover {
+        background-color: $c_primary-dark;
+      }
+    }
+  }
 }
 </style>
