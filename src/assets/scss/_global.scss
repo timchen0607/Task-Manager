@@ -13,7 +13,7 @@ body {
   width: 100%;
   margin: auto;
   box-sizing: border-box;
-  max-width: 1000px;
+  max-width: 800px;
 
   @include pad {
     max-width: 720px;
@@ -27,19 +27,31 @@ body {
   font-size: 1.6rem;
   font-weight: bold;
   text-align: center;
+  @include mobile {
+    font-size: 1.25rem;
+  }
 }
 .subtitle {
   font-size: 1.25rem;
   font-weight: bold;
+  @include mobile {
+    font-size: 1.1rem;
+  }
 }
 .remark,
 .placeholder {
   color: $c_secondary-dark;
   line-height: 1.5rem;
+  @include mobile {
+    font-size: 1.25rem;
+  }
 }
 .status {
   font-style: italic;
   color: $c_success;
   font-size: 1.5rem;
   text-align: center;
+  @include mobile {
+    font-size: 1.25rem;
+  }
 }
