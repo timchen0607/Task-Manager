@@ -18,7 +18,9 @@ import { getTasks } from "./api/localStorageUtils";
 export default defineComponent({
   name: "App",
   setup() {
-    const tasks = reactive(getTasks());
+    const tasks = reactive(
+      getTasks().sort((a, b) => b.completed - a.completed)
+    );
     return { tasks };
   },
 });
