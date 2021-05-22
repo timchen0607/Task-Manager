@@ -63,9 +63,6 @@ body {
       background-color: $c_light;
       border-radius: 3px;
       cursor: pointer;
-      &.checked {
-        background-color: $c_primary;
-      }
     }
     &-title {
       flex: auto;
@@ -74,6 +71,7 @@ body {
     .fa-star,
     .fa-feather-alt {
       margin: 0 0.5rem;
+      transition: color 0.5s;
       cursor: pointer;
     }
   }
@@ -123,6 +121,9 @@ body {
 .task.completed {
   .task-header {
     background-color: $c_warning-light;
+    &-check {
+      background-color: $c_primary;
+    }
   }
 }
 .task.show {
@@ -131,6 +132,9 @@ body {
     padding: clamp(1rem, 2.5vw, 1.5rem);
     border-bottom: 2px solid $c_secondary;
     border-radius: 5px 5px 0 0;
+    .fa-feather-alt {
+      color: $c_primary;
+    }
   }
   .task-body {
     max-height: 300px;
