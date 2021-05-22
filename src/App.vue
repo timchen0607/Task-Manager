@@ -1,15 +1,14 @@
 <template>
   <header class="nav">
     <div class="container">
-      <router-link to="/" class="title" replace>My Tasks</router-link>
-      <router-link to="/InProgress" class="title" replace>
+      <router-link to="/" class="title">My Tasks</router-link>
+      <router-link to="/InProgress" class="title">
         In Progress
       </router-link>
-      <router-link to="/Completed" class="title" replace>Completed</router-link>
+      <router-link to="/Completed" class="title">Completed</router-link>
     </div>
   </header>
   <router-view />
-  <div>{{ currentRoute }}</div>
 </template>
 
 <style lang="scss">

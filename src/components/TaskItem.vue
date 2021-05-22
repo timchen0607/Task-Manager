@@ -2,7 +2,7 @@
   <article class="task show">
     <header class="task-header title">
       <div class="task-header-check"><i class="fas fa-check"></i></div>
-      <h2 class="task-header-title">Title...Title...Title...</h2>
+      <h2 class="task-header-title" v-text="task.title"></h2>
       <i class="far fa-star"></i>
       <i class="fas fa-feather-alt"></i>
     </header>
@@ -13,20 +13,8 @@
           Deadline
         </label>
         <div class="inputGroup-content">
-          <input type="date" name="" id="" />
-          <input type="time" name="" id="" />
-        </div>
-      </div>
-      <div class="inputGroup">
-        <label for="" class="inputGroup-title subtitle">
-          <i class="far fa-file-alt"></i>
-          File
-        </label>
-        <div class="inputGroup-content">
-          <label for="taskFile" class="updateBtn"
-            ><i class="fas fa-plus"></i
-          ></label>
-          <input type="file" name="" id="taskFile" />
+          <input type="date" :value="task.date" />
+          <input type="time" :value="task.time" />
         </div>
       </div>
       <div class="inputGroup">
@@ -39,6 +27,7 @@
             id=""
             rows="5"
             placeholder="Type your memo here..."
+            :value="task.comment"
           ></textarea>
         </div>
       </div>
@@ -58,6 +47,9 @@
 import { defineComponent } from "vue";
 export default defineComponent({
   name: "TaskList",
+  props: {
+    task: Object,
+  },
   setup() {},
 });
 </script>
@@ -154,9 +146,8 @@ export default defineComponent({
 
     input[type="date"],
     input[type="time"],
-    input[type="file"],
     textarea {
-      width: 100%;
+      width: auto;
       font-size: 1rem;
       padding: 0.5rem;
       border: none;
@@ -166,26 +157,8 @@ export default defineComponent({
     input[type="date"] {
       margin-right: 10px;
     }
-    input[type="date"],
-    input[type="time"] {
-      width: auto;
-    }
-    input[type="file"] {
-      padding: 0;
-      display: none;
-    }
-    .updateBtn {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 32px;
-      height: 32px;
-      color: $c_light;
-      background-color: $c_success;
-      border-radius: 2px;
-      cursor: pointer;
-    }
     textarea {
+      width: 100%;
       resize: none;
     }
   }
