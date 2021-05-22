@@ -1,6 +1,6 @@
 <template>
-  <article class="task show">
-    <header class="task-header title">
+  <article :class="['task', { show: taskStatus }]">
+    <header class="task-header title" @click="showTask()">
       <div class="task-header-check"><i class="fas fa-check"></i></div>
       <h2 class="task-header-title" v-text="task.title"></h2>
       <i class="far fa-star"></i>
@@ -44,13 +44,19 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 export default defineComponent({
   name: "TaskList",
   props: {
     task: Object,
   },
-  setup() {},
+  setup() {
+    const taskStatus = ref(false);
+    const showTask = () => {
+      taskStatus.value = !taskStatus.value;
+    };
+    return { taskStatus, showTask };
+  },
 });
 </script>
 
