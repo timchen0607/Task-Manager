@@ -2,11 +2,14 @@
   <article
     :class="['task', { completed: task.completed }, { show: taskStatus }]"
   >
-    <header class="task-header title" @click="showTask()">
+    <header class="task-header title">
       <div class="task-header-check"><i class="fas fa-check"></i></div>
       <h2 class="task-header-title" v-text="task.title"></h2>
-      <i class="far fa-star"></i>
-      <i class="fas fa-feather-alt"></i>
+      <span>
+        <i class="fas fa-star" v-show="task.pinning"></i>
+        <i class="far fa-star" v-show="!task.pinning"></i>
+      </span>
+      <span @click="showTask()"><i class="fas fa-feather-alt"></i></span>
     </header>
     <div class="task-body">
       <div class="inputGroup">
