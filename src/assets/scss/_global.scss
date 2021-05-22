@@ -36,7 +36,7 @@ body {
 }
 
 .task {
-  margin: 0.5rem clamp(0rem, 2vw, 1rem);
+  margin: 0.7rem clamp(0rem, 2vw, 1rem);
   background-color: $c_secondary-light;
   border-radius: 5px;
   box-shadow: 0px 0px 5px 1px $c_success;
@@ -46,9 +46,8 @@ body {
     align-items: center;
     padding: clamp(0.8rem, 2vw, 1rem) clamp(1rem, 2.5vw, 1.5rem);
     background-color: $c_secondary-light;
-    border-radius: 5px 5px 0 0;
-    border-bottom: 2px solid $c_secondary;
-    transition: padding 0.5s, background-color 0.5s;
+    border-radius: 5px;
+    transition: padding 0.5s, background-color 0.5s, border-radius 0.5s;
     cursor: pointer;
     &:hover {
       background-color: $c_warning-light;
@@ -116,6 +115,9 @@ body {
         background-color: $c_primary-dark;
       }
     }
+    button {
+      display: none;
+    }
   }
 }
 .task.completed {
@@ -127,6 +129,8 @@ body {
   margin: 1.5rem clamp(0rem, 2vw, 1rem);
   .task-header {
     padding: clamp(1rem, 2.5vw, 1.5rem);
+    border-bottom: 2px solid $c_secondary;
+    border-radius: 5px 5px 0 0;
   }
   .task-body {
     max-height: 300px;
@@ -136,6 +140,9 @@ body {
     max-height: 60px;
     opacity: 1;
     transition: opacity 0.5s linear 0.5s;
+    button {
+      display: block;
+    }
   }
 }
 .inputGroup {

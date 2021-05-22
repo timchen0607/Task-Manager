@@ -1,5 +1,7 @@
 <template>
-  <article :class="['task', { show: taskStatus }]">
+  <article
+    :class="['task', { completed: task.completed }, { show: taskStatus }]"
+  >
     <header class="task-header title" @click="showTask()">
       <div class="task-header-check"><i class="fas fa-check"></i></div>
       <h2 class="task-header-title" v-text="task.title"></h2>
