@@ -29,7 +29,7 @@ export default defineComponent({
       tasks.length = 0;
       delTasks();
     };
-
+    sortTasks(tasks);
     watch(
       tasks,
       () => {

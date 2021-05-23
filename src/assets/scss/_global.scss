@@ -152,6 +152,9 @@ body {
 .task.pinning {
   .task-header {
     background-color: $c_warning-light;
+    .fa-star {
+      color: $c_warning;
+    }
   }
 }
 .task.show {
