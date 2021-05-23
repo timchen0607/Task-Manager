@@ -8,22 +8,26 @@
       <router-link to="/Completed" class="title">Completed</router-link>
     </div>
   </header>
-  <router-view :tasks="tasks" :updateState="updateState" />
+  <router-view
+    :tasks="tasks"
+    :updateState="updateState"
+    :clearTasks="clearTasks"
+  />
 </template>
 
 <script>
 import { defineComponent, reactive, watch } from "vue";
-import { getTasks, setTasks } from "./api/localStorageUtils";
+import { getTasks, setTasks, delTasks } from "./api/localStorageUtils";
 
 export default defineComponent({
   name: "App",
   setup() {
     const tasks = reactive(getTasks());
     const sortTasks = (tasks) => tasks.sort((a, b) => b.pinning - a.pinning);
-    const updateState = (task, attr) => {
-      console.log(task[attr]);
-      console.log(!task[attr]);
-      task[attr] = !task[attr];
+    const updateState = (task, attr) => (task[attr] = !task[attr]);
+    const clearTasks = () => {
+      tasks.length = 0;
+      delTasks();
     };
 
     watch(
@@ -34,7 +38,7 @@ export default defineComponent({
       },
       { deep: true }
     );
-    return { tasks, updateState };
+    return { tasks, updateState, clearTasks };
   },
 });
 </script>

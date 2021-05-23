@@ -6,7 +6,10 @@
       :task="task"
       :updateState="updateState"
     ></TaskItem>
-    <!-- <h3>4 Tasks Left</h3> -->
+    <footer class="overview">
+      <h3 class="status">4 Tasks Left</h3>
+      <button class="clearAll" @click="clearTasks">Clear All Tasks</button>
+    </footer>
   </div>
 </template>
 
@@ -22,6 +25,7 @@ export default defineComponent({
   props: {
     tasks: { type: Object },
     updateState: { type: Function },
+    clearTasks: { type: Function },
   },
   setup() {},
 });
