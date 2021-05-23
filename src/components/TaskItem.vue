@@ -3,13 +3,15 @@
     :class="['task', { completed: task.completed }, { show: taskStatus }]"
   >
     <header class="task-header title">
-      <div class="task-header-check"><i class="fas fa-check"></i></div>
+      <span class="task-header-check" @click="updateState(task, 'completed')"
+        ><i class="fas fa-check"></i
+      ></span>
       <h2 class="task-header-title" v-text="task.title"></h2>
-      <span>
+      <span @click="togglePinning()">
         <i class="fas fa-star" v-show="task.pinning"></i>
         <i class="far fa-star" v-show="!task.pinning"></i>
       </span>
-      <span @click="showTask()"><i class="fas fa-feather-alt"></i></span>
+      <span @click="toggleTask(true)"><i class="fas fa-feather-alt"></i></span>
     </header>
     <div class="task-body">
       <div class="inputGroup">
@@ -38,7 +40,7 @@
       </div>
     </div>
     <footer class="task-footer">
-      <button class="task-footer-cancel">
+      <button class="task-footer-cancel" @click="toggleTask(false)">
         <i class="fas fa-times"></i> Cancel
       </button>
       <button class="task-footer-save">
@@ -53,14 +55,14 @@ import { defineComponent, ref } from "vue";
 export default defineComponent({
   name: "TaskList",
   props: {
-    task: Object,
+    task: { type: Object },
+    updateState: { type: Function },
   },
   setup() {
     const taskStatus = ref(false);
-    const showTask = () => {
-      taskStatus.value = !taskStatus.value;
-    };
-    return { taskStatus, showTask };
+    const toggleTask = (flag) => (taskStatus.value = flag);
+
+    return { taskStatus, toggleTask };
   },
 });
 </script>

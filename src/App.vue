@@ -8,7 +8,7 @@
       <router-link to="/Completed" class="title">Completed</router-link>
     </div>
   </header>
-  <router-view :tasks="tasks" />
+  <router-view :tasks="tasks" :updateState="updateState" />
 </template>
 
 <script>
@@ -21,7 +21,8 @@ export default defineComponent({
     const tasks = reactive(
       getTasks().sort((a, b) => b.completed - a.completed)
     );
-    return { tasks };
+    const updateState = (task, state) => (task[state] = !task[state]);
+    return { tasks, updateState };
   },
 });
 </script>

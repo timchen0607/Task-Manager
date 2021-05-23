@@ -1,6 +1,11 @@
 <template>
   <div class="container">
-    <TaskItem v-for="task in tasks" :key="task.id" :task="task"></TaskItem>
+    <TaskItem
+      v-for="task in tasks"
+      :key="task.id"
+      :task="task"
+      :updateState="updateState"
+    ></TaskItem>
   </div>
 </template>
 
@@ -15,6 +20,7 @@ export default defineComponent({
   },
   props: {
     tasks: { type: Object },
+    updateState: { type: Function },
   },
   setup() {},
 });
