@@ -7,7 +7,10 @@
       :updateState="updateState"
     ></TaskItem>
     <footer class="overview">
-      <h3 class="status">4 Tasks Left</h3>
+      <h3
+        class="status"
+        v-text="tasks.filter((x) => !x.completed).length + ' Tasks Left'"
+      ></h3>
       <button class="clearAll" @click="clearTasks">Clear All Tasks</button>
     </footer>
   </div>
