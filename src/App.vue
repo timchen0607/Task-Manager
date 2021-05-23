@@ -12,16 +12,20 @@
 </template>
 
 <script>
-import { defineComponent, reactive } from "vue";
-import { getTasks } from "./api/localStorageUtils";
+import { defineComponent, reactive, watch } from "vue";
+import { getTasks, setTasks } from "./api/localStorageUtils";
 
 export default defineComponent({
   name: "App",
   setup() {
-    const tasks = reactive(
-      getTasks().sort((a, b) => b.completed - a.completed)
-    );
+    const tasks = reactive(getTasks());
+    const sortTasks = (tasks) => tasks.sort((a, b) => b.pinning - a.pinning);
     const updateState = (task, state) => (task[state] = !task[state]);
+
+    watch(tasks, () => {
+      sortTasks(tasks);
+      setTasks(tasks);
+    });
     return { tasks, updateState };
   },
 });
