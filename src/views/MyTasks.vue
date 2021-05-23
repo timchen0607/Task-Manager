@@ -21,7 +21,7 @@ import { defineComponent } from "vue";
 import TaskItem from "@/components/TaskItem.vue";
 
 export default defineComponent({
-  name: "Home",
+  name: "MyTasks",
   components: {
     TaskItem,
   },
