@@ -1,15 +1,22 @@
 <template>
   <article
-    :class="['task', { completed: task.completed }, { show: taskStatus }]"
+    :class="[
+      'task',
+      { pinning: task.pinning },
+      { completed: task.completed },
+      { show: taskStatus },
+    ]"
   >
     <header class="task-header title">
-      <span class="task-header-check" @click="updateState(task, 'completed')"
-        ><i class="fas fa-check"></i
-      ></span>
+      <span class="task-header-check" @click="updateState(task, 'completed')">
+        <i class="fas fa-check"></i>
+      </span>
       <h2 class="task-header-title" v-text="task.title"></h2>
-      <span @click="togglePinning()">
-        <i class="fas fa-star" v-show="task.pinning"></i>
-        <i class="far fa-star" v-show="!task.pinning"></i>
+      <span @click="updateState(task, 'pinning')" v-show="task.pinning">
+        <i class="fas fa-star"></i>
+      </span>
+      <span @click="updateState(task, 'pinning')" v-show="!task.pinning">
+        <i class="far fa-star"></i>
       </span>
       <span @click="toggleTask(true)"><i class="fas fa-feather-alt"></i></span>
     </header>

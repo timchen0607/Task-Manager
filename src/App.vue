@@ -20,12 +20,20 @@ export default defineComponent({
   setup() {
     const tasks = reactive(getTasks());
     const sortTasks = (tasks) => tasks.sort((a, b) => b.pinning - a.pinning);
-    const updateState = (task, state) => (task[state] = !task[state]);
+    const updateState = (task, attr) => {
+      console.log(task[attr]);
+      console.log(!task[attr]);
+      task[attr] = !task[attr];
+    };
 
-    watch(tasks, () => {
-      sortTasks(tasks);
-      setTasks(tasks);
-    });
+    watch(
+      tasks,
+      () => {
+        sortTasks(tasks);
+        setTasks(tasks);
+      },
+      { deep: true }
+    );
     return { tasks, updateState };
   },
 });

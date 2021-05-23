@@ -6,6 +6,7 @@
       :task="task"
       :updateState="updateState"
     ></TaskItem>
+    <!-- <h3>4 Tasks Left</h3> -->
   </div>
 </template>
 
