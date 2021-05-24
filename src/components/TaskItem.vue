@@ -11,7 +11,11 @@
       <span class="task-header-check" @click="updateState(task, 'completed')">
         <i class="fas fa-check"></i>
       </span>
-      <h2 class="task-header-title" v-text="task.title"></h2>
+      <h2
+        class="task-header-title"
+        v-text="task.title"
+        @click="updateState(task, 'completed')"
+      ></h2>
       <span @click="updateState(task, 'pinning')" v-show="task.pinning">
         <i class="fas fa-star"></i>
       </span>
