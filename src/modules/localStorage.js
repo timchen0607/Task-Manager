@@ -34,8 +34,5 @@ const getTasks = () => {
 const setTasks = (tasks) => {
   localStorage.setItem("Tasks", JSON.stringify(tasks));
 };
-const delTasks = () => {
-  localStorage.removeItem("Tasks");
-};
 
-export { getTasks, setTasks, delTasks };
+export { getTasks, setTasks };
