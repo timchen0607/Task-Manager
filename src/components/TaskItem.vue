@@ -11,11 +11,24 @@
       <span class="task-header-check" @click="updateState(task, 'completed')">
         <i class="fas fa-check"></i>
       </span>
-      <h2
-        class="task-header-title"
-        v-text="task.title"
-        @click="updateState(task, 'completed')"
-      ></h2>
+      <div class="task-header-title">
+        <h2
+          class="task-header-title-text"
+          v-text="task.title"
+          @click="updateState(task, 'completed')"
+        ></h2>
+        <div>
+          <span class="task-header-remark" v-show="task.date">
+            <i class="far fa-calendar-minus"></i>{{ task.date }}
+          </span>
+          <span class="task-header-remark" v-show="task.time">
+            <i class="far fa-clock"></i>{{ task.time }}
+          </span>
+          <span class="task-header-remark" v-show="task.comment">
+            <i class="far fa-comment"></i>
+          </span>
+        </div>
+      </div>
       <span @click="updateState(task, 'pinning')" v-show="task.pinning">
         <i class="fas fa-star"></i>
       </span>

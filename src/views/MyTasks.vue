@@ -27,9 +27,9 @@ export default defineComponent({
     TaskItem,
   },
   props: {
-    tasks: Object,
-    updateState: Function,
-    clearTasks: Function,
+    tasks: { type: Object },
+    updateState: { type: Function },
+    clearTasks: { type: Function },
   },
   setup(props, { emit }) {
     const updateContent = (editContent) => emit("updateContent", editContent);
