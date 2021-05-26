@@ -33,14 +33,14 @@ body {
 }
 .newTask {
   width: calc(100% - clamp(0rem, 2vw, 2rem));
-  margin: 1rem clamp(0rem, 2vw, 1rem);
+  margin: 1rem clamp(0.1rem, 2vw, 1rem);
   padding: 0.5rem;
   font-size: clamp(1.25rem, 2.5vw, 1.6rem);
   box-sizing: border-box;
 }
 
 .task {
-  margin: 0.7rem clamp(0rem, 2vw, 1rem);
+  margin: 0.7rem clamp(0.1rem, 2vw, 1rem);
   background-color: $c_secondary-light;
   border-radius: 5px;
   box-shadow: 0px 0px 5px 1px $c_success;
@@ -154,7 +154,7 @@ body {
   }
 }
 .task.show {
-  margin: 1.5rem clamp(0rem, 2vw, 1rem);
+  margin: 1.5rem clamp(0.1rem, 2vw, 1rem);
   .task-header {
     border-bottom: 2px solid $c_secondary;
     border-radius: 5px 5px 0 0;
