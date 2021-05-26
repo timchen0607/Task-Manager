@@ -8,7 +8,11 @@
       <router-link to="/Completed" class="title">Completed</router-link>
     </div>
   </header>
-  <router-view :tasks="tasks" :updateState="updateState" />
+  <router-view
+    :tasks="tasks"
+    :updateState="updateState"
+    @updateContent="updateContent"
+  />
 </template>
 
 <script>
@@ -21,6 +25,12 @@ export default defineComponent({
     const tasks = reactive(getTasks());
     const sortTasks = (tasks) => tasks.sort((a, b) => b.pinning - a.pinning);
     const updateState = (task, attr) => (task[attr] = !task[attr]);
+    const updateContent = (editContent) => {
+      let index = tasks.map((x) => x.id).indexOf(editContent.id);
+      tasks[index].date = editContent.date;
+      tasks[index].time = editContent.time;
+      tasks[index].comment = editContent.comment;
+    };
     sortTasks(tasks);
     watch(
       tasks,
@@ -30,7 +40,7 @@ export default defineComponent({
       },
       { deep: true }
     );
-    return { tasks, updateState };
+    return { tasks, updateState, updateContent };
   },
 });
 </script>

@@ -5,6 +5,7 @@
       :key="task.id"
       :task="task"
       :updateState="updateState"
+      @updateContent="updateContent"
     ></TaskItem>
     <footer class="overview">
       <h3
@@ -26,10 +27,13 @@ export default defineComponent({
     TaskItem,
   },
   props: {
-    tasks: { type: Object },
-    updateState: { type: Function },
-    clearTasks: { type: Function },
+    tasks: Object,
+    updateState: Function,
+    clearTasks: Function,
   },
-  setup() {},
+  setup(props, { emit }) {
+    const updateContent = (editContent) => emit("updateContent", editContent);
+    return { updateContent };
+  },
 });
 </script>

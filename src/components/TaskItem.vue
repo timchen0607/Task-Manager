@@ -4,7 +4,7 @@
       'task',
       { pinning: task.pinning },
       { completed: task.completed },
-      { show: taskStatus },
+      { show: content.show },
     ]"
   >
     <header class="task-header title">
@@ -22,7 +22,14 @@
       <span @click="updateState(task, 'pinning')" v-show="!task.pinning">
         <i class="far fa-star"></i>
       </span>
-      <span @click="toggleTask(true)"><i class="fas fa-feather-alt"></i></span>
+      <span
+        @click="
+          showH();
+          contentH();
+        "
+      >
+        <i class="fas fa-feather-alt"></i>
+      </span>
     </header>
     <div class="task-body">
       <div class="inputGroup">
@@ -31,8 +38,8 @@
           Deadline
         </label>
         <div class="inputGroup-content">
-          <input type="date" :value="task.date" />
-          <input type="time" :value="task.time" />
+          <input type="date" v-model="content.date" />
+          <input type="time" v-model="content.time" />
         </div>
       </div>
       <div class="inputGroup">
@@ -45,16 +52,22 @@
             id=""
             rows="5"
             placeholder="Type your memo here..."
-            :value="task.comment"
+            v-model="content.comment"
           ></textarea>
         </div>
       </div>
     </div>
     <footer class="task-footer">
-      <button class="task-footer-cancel" @click="toggleTask(false)">
+      <button class="task-footer-cancel" @click="showH">
         <i class="fas fa-times"></i> Cancel
       </button>
-      <button class="task-footer-save">
+      <button
+        class="task-footer-save"
+        @click="
+          updateContent();
+          showH();
+        "
+      >
         <i class="fas fa-check"></i> Save
       </button>
     </footer>
@@ -62,18 +75,34 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent, reactive } from "vue";
+
 export default defineComponent({
   name: "TaskList",
   props: {
     task: { type: Object },
     updateState: { type: Function },
   },
-  setup() {
-    const taskStatus = ref(false);
-    const toggleTask = (flag) => (taskStatus.value = flag);
+  emits: {
+    updateContent: { type: Function },
+  },
+  setup(props, { emit }) {
+    let content = reactive({ show: false });
+    const contentH = () => {
+      content.id = props.task.id;
+      content.date = props.task.date;
+      content.time = props.task.time;
+      content.comment = props.task.comment;
+    };
+    const showH = () => (content.show = !content.show);
+    const updateContent = () => emit("updateContent", content);
 
-    return { taskStatus, toggleTask };
+    return {
+      content,
+      contentH,
+      showH,
+      updateContent,
+    };
   },
 });
 </script>
