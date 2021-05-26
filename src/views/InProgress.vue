@@ -5,6 +5,7 @@
       :key="task.id"
       :task="task"
       :updateState="updateState"
+      @updateContent="updateContent"
     ></TaskItem>
     <footer class="overview">
       <h3 class="status" v-text="incomplete.length + ' Tasks Left'"></h3>
@@ -27,9 +28,10 @@ export default defineComponent({
     updateState: { type: Function },
     clearTasks: { type: Function },
   },
-  setup(props) {
+  setup(props, { emit }) {
     const incomplete = computed(() => props.tasks.filter((x) => !x.completed));
-    return { incomplete };
+    const updateContent = (editContent) => emit("updateContent", editContent);
+    return { incomplete, updateContent };
   },
 });
 </script>

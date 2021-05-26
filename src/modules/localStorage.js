@@ -29,7 +29,9 @@ const defaultTasks = [
 ];
 
 const getTasks = () => {
-  return JSON.parse(localStorage.getItem("Tasks")) || defaultTasks;
+  let tasks = JSON.parse(localStorage.getItem("Tasks")) || defaultTasks;
+  tasks.sort((a, b) => b.pinning - a.pinning)
+  return tasks;
 };
 const setTasks = (tasks) => {
   localStorage.setItem("Tasks", JSON.stringify(tasks));

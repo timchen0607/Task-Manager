@@ -23,7 +23,7 @@ export default defineComponent({
   name: "App",
   setup() {
     const tasks = reactive(getTasks());
-    const sortTasks = (tasks) => tasks.sort((a, b) => b.pinning - a.pinning);
+    const sortTasks = () => tasks.sort((a, b) => b.pinning - a.pinning);
     const updateState = (task, attr) => (task[attr] = !task[attr]);
     const updateContent = (editContent) => {
       let index = tasks.map((x) => x.id).indexOf(editContent.id);
@@ -31,11 +31,10 @@ export default defineComponent({
       tasks[index].time = editContent.time;
       tasks[index].comment = editContent.comment;
     };
-    sortTasks(tasks);
     watch(
       tasks,
       () => {
-        sortTasks(tasks);
+        sortTasks();
         setTasks(tasks);
       },
       { deep: true }
