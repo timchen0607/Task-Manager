@@ -8,15 +8,25 @@
       <router-link to="/Completed" class="title">Completed</router-link>
     </div>
   </header>
+  <div class="container">
+    <input
+      type="text"
+      class="newTask"
+      v-model="newTitle"
+      placeholder="Add New Task"
+      @keyup.enter="addTask"
+    />
+  </div>
   <router-view
     :tasks="tasks"
     :updateState="updateState"
+    :delTask="delTask"
     @updateContent="updateContent"
   />
 </template>
 
 <script>
-import { defineComponent, reactive, watch } from "vue";
+import { defineComponent, reactive, ref, watch } from "vue";
 import { getTasks, setTasks } from "./modules/localStorage";
 
 export default defineComponent({
@@ -31,6 +41,25 @@ export default defineComponent({
       tasks[index].time = editContent.time;
       tasks[index].comment = editContent.comment;
     };
+    const newTitle = ref("");
+    const addTask = () => {
+      if (newTitle.value.trim() === "") return;
+      let newTask = {
+        id: Math.max(...tasks.map((x) => x.id)) + 1,
+        title: newTitle.value,
+        date: "",
+        time: "",
+        comment: "",
+        pinning: false,
+        completed: false,
+      };
+      tasks.unshift(newTask);
+      newTitle.value = "";
+    };
+    const delTask = (id) => {
+      let index = tasks.map((x) => x.id).indexOf(id);
+      tasks.splice(index, 1);
+    };
     watch(
       tasks,
       () => {
@@ -39,7 +68,7 @@ export default defineComponent({
       },
       { deep: true }
     );
-    return { tasks, updateState, updateContent };
+    return { tasks, updateState, updateContent, newTitle, addTask, delTask };
   },
 });
 </script>

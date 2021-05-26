@@ -29,6 +29,9 @@
           </span>
         </div>
       </div>
+      <span @click="delTask(task.id)">
+        <i class="fas fa-trash-alt"></i>
+      </span>
       <span @click="updateState(task, 'pinning')" v-show="task.pinning">
         <i class="fas fa-star"></i>
       </span>
@@ -95,6 +98,7 @@ export default defineComponent({
   props: {
     task: { type: Object },
     updateState: { type: Function },
+    delTask: { type: Function },
   },
   emits: {
     updateContent: { type: Function },

@@ -31,6 +31,13 @@ body {
   color: $c_success;
   font-size: clamp(1.25rem, 2.5vw, 1.5rem);
 }
+.newTask {
+  width: calc(100% - clamp(0rem, 2vw, 2rem));
+  margin: 1rem clamp(0rem, 2vw, 1rem);
+  padding: 0.5rem;
+  font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+  box-sizing: border-box;
+}
 
 .task {
   margin: 0.7rem clamp(0rem, 2vw, 1rem);
@@ -71,11 +78,15 @@ body {
       line-height: 1.5rem;
       margin-right: 1rem;
     }
+    .fa-trash-alt,
     .fa-star,
     .fa-feather-alt {
       margin: 0 0.5rem;
       transition: color 0.5s;
       cursor: pointer;
+    }
+    .fa-trash-alt:hover {
+      color: $c_danger;
     }
   }
   &-body {

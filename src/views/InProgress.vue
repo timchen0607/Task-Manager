@@ -5,6 +5,7 @@
       :key="task.id"
       :task="task"
       :updateState="updateState"
+      :delTask="delTask"
       @updateContent="updateContent"
     ></TaskItem>
     <footer class="overview">
@@ -25,6 +26,7 @@ export default defineComponent({
   props: {
     tasks: { type: Object },
     updateState: { type: Function },
+    delTask: { type: Function },
   },
   setup(props, { emit }) {
     const incomplete = computed(() => props.tasks.filter((x) => !x.completed));
