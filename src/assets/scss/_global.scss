@@ -24,29 +24,12 @@ body {
   font-weight: bold;
 }
 .overview {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 0.5rem;
+  padding: 0.5rem 3rem;
 }
 .status {
   font-style: italic;
   color: $c_success;
   font-size: clamp(1.25rem, 2.5vw, 1.5rem);
-  text-align: center;
-}
-.clearAll {
-  padding: 0.5rem 0.8rem;
-  font-size: 1.2rem;
-  color: $c_light;
-  background-color: $c_secondary-dark;
-  border: none;
-  border-radius: 3px;
-  transition: background-color 0.5s;
-  cursor: pointer;
-  &:hover {
-    background-color: $c_danger;
-  }
 }
 
 .task {

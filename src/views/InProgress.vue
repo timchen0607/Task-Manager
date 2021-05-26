@@ -9,7 +9,6 @@
     ></TaskItem>
     <footer class="overview">
       <h3 class="status" v-text="incomplete.length + ' Tasks Left'"></h3>
-      <button class="clearAll" @click="clearTasks">Clear All Tasks</button>
     </footer>
   </div>
 </template>
@@ -26,7 +25,6 @@ export default defineComponent({
   props: {
     tasks: { type: Object },
     updateState: { type: Function },
-    clearTasks: { type: Function },
   },
   setup(props, { emit }) {
     const incomplete = computed(() => props.tasks.filter((x) => !x.completed));

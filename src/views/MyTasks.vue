@@ -12,7 +12,6 @@
         class="status"
         v-text="tasks.filter((x) => !x.completed).length + ' Tasks Left'"
       ></h3>
-      <button class="clearAll" @click="clearTasks">Clear All Tasks</button>
     </footer>
   </div>
 </template>
@@ -29,7 +28,6 @@ export default defineComponent({
   props: {
     tasks: { type: Object },
     updateState: { type: Function },
-    clearTasks: { type: Function },
   },
   setup(props, { emit }) {
     const updateContent = (editContent) => emit("updateContent", editContent);
