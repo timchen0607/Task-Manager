@@ -116,7 +116,7 @@ body {
       background-color: $c_light;
       border-bottom-left-radius: 5px;
       &:hover {
-        background-color: $c_secondary-dark;
+        background-color: $c_danger;
       }
     }
     &-save {
