@@ -28,13 +28,7 @@ const defaultTasks = [
   },
 ];
 
-const getTasks = () => {
-  let tasks = JSON.parse(localStorage.getItem("Tasks")) || defaultTasks;
-  tasks.sort((a, b) => b.pinning - a.pinning)
-  return tasks;
-};
-const setTasks = (tasks) => {
-  localStorage.setItem("Tasks", JSON.stringify(tasks));
-};
+const getData = (name) => JSON.parse(localStorage.getItem(name)) || defaultTasks;
+const setData = (name, data) => localStorage.setItem(name, JSON.stringify(data));
 
-export { getTasks, setTasks };
+export default { getData, setData };

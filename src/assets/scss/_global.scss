@@ -6,6 +6,7 @@ body {
   font-size: 16px;
   font-family: $font;
   background-color: $c_secondary;
+  user-select: none;
 }
 
 .container {
@@ -25,12 +26,15 @@ body {
 }
 .overview {
   padding: 0.5rem 3rem;
+  &-text {
+    color: $c_primary-dark;
+    font-style: italic;
+    font-weight: bold;
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    text-align: right;
+  }
 }
-.status {
-  font-style: italic;
-  color: $c_success;
-  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
-}
+
 .newTask {
   width: calc(100% - clamp(0rem, 2vw, 2rem));
   margin: 1rem clamp(0.1rem, 2vw, 1rem);
@@ -49,12 +53,23 @@ body {
     box-shadow: 0px 0px 5px 5px $c_success;
   }
   &-header {
+    position: relative;
     display: flex;
     padding: clamp(1rem, 2.5vw, 1.5rem);
     background-color: $c_secondary-light;
     border-radius: 5px;
     transition: background-color 0.5s, border-radius 0.5s;
     cursor: pointer;
+    &-grab {
+      position: absolute;
+      top: 50%;
+      left: clamp(1px, 1vw, 8px);
+      padding: 2px;
+      transform: translateY(-50%);
+      color: $c_primary-dark;
+      font-size: 1rem;
+      cursor: grab;
+    }
     &-check {
       width: 25px;
       height: 25px;
@@ -67,26 +82,27 @@ body {
       border-radius: 3px;
       cursor: pointer;
     }
-    &-title {
+    &-main {
       flex: auto;
       padding-left: 1rem;
       transition: color 0.5s;
     }
-    &-remark {
+    &-mark {
       font-size: 1rem;
       color: $c_secondary-dark;
       line-height: 1.5rem;
       margin-right: 1rem;
     }
-    .fa-trash-alt,
-    .fa-star,
-    .fa-feather-alt {
+    &-icon {
+      margin-right: 0.5rem;
+    }
+    &-btn {
       margin: 0 0.5rem;
       transition: color 0.5s;
       cursor: pointer;
-    }
-    .fa-trash-alt:hover {
-      color: $c_danger;
+      .fa-trash-alt:hover {
+        color: $c_danger;
+      }
     }
   }
   &-body {
@@ -131,17 +147,20 @@ body {
       display: none;
     }
   }
+  &-ghost {
+    opacity: 0.5;
+  }
 }
 .task.completed {
   .task-header {
     &-check {
       background-color: $c_primary;
     }
-    &-title {
+    &-main {
       color: $c_secondary-dark;
-      &-text {
-        text-decoration: line-through;
-      }
+    }
+    &-title {
+      text-decoration: line-through;
     }
   }
 }

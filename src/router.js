@@ -4,20 +4,23 @@ import MyTasks from "./views/MyTasks.vue";
 const routes = [
   {
     path: "/",
+    name: "root",
+    redirect: '/Task'
+  },
+  {
+    path: "/Task",
     name: "MyTasks",
     component: MyTasks,
   },
   {
     path: "/InProgress",
     name: "InProgress",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "./views/InProgress.vue"),
+    component: MyTasks,
   },
   {
     path: "/Completed",
     name: "Completed",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "./views/Completed.vue"),
+    component: MyTasks,
   },
 ];
 

@@ -8,37 +8,51 @@
     ]"
   >
     <header class="task-header title">
-      <span class="task-header-check" @click="updateState(task, 'completed')">
+      <span class="task-header-grab"><i class="fas fa-ellipsis-v"></i></span>
+      <span
+        class="task-header-check"
+        @click="updateState(task.id, 'completed')"
+      >
         <i class="fas fa-check"></i>
       </span>
-      <div class="task-header-title">
+      <div class="task-header-main">
         <h2
-          class="task-header-title-text"
+          class="task-header-title"
           v-text="task.title"
-          @click="updateState(task, 'completed')"
+          @click="updateState(task.id, 'completed')"
         ></h2>
         <div>
-          <span class="task-header-remark" v-show="task.date">
-            <i class="far fa-calendar-minus"></i>{{ task.date }}
+          <span class="task-header-mark" v-show="task.date">
+            <i class="far fa-calendar-minus task-header-icon"></i
+            >{{ task.date }}
           </span>
-          <span class="task-header-remark" v-show="task.time">
-            <i class="far fa-clock"></i>{{ task.time }}
+          <span class="task-header-mark" v-show="task.time">
+            <i class="far fa-clock task-header-icon"></i>{{ task.time }}
           </span>
-          <span class="task-header-remark" v-show="task.comment">
-            <i class="far fa-comment"></i>
+          <span class="task-header-mark" v-show="task.comment">
+            <i class="far fa-comment task-header-icon"></i>
           </span>
         </div>
       </div>
-      <span @click="delTask(task.id)">
+      <span class="task-header-btn" @click="delTask(task.id)">
         <i class="fas fa-trash-alt"></i>
       </span>
-      <span @click="updateState(task, 'pinning')" v-show="task.pinning">
+      <span
+        class="task-header-btn"
+        @click="updateState(task.id, 'pinning')"
+        v-show="task.pinning"
+      >
         <i class="fas fa-star"></i>
       </span>
-      <span @click="updateState(task, 'pinning')" v-show="!task.pinning">
+      <span
+        class="task-header-btn"
+        @click="updateState(task.id, 'pinning')"
+        v-show="!task.pinning"
+      >
         <i class="far fa-star"></i>
       </span>
       <span
+        class="task-header-btn"
         @click="
           showH();
           contentH();
@@ -80,7 +94,7 @@
       <button
         class="task-footer-save"
         @click="
-          updateContent();
+          updateTask(task.id, content);
           showH();
         "
       >
@@ -98,27 +112,21 @@ export default defineComponent({
   props: {
     task: { type: Object },
     updateState: { type: Function },
+    updateTask: { type: Function },
     delTask: { type: Function },
   },
-  emits: {
-    updateContent: { type: Function },
-  },
-  setup(props, { emit }) {
+  setup(props) {
     let content = reactive({ show: false });
     const contentH = () => {
-      content.id = props.task.id;
-      content.date = props.task.date;
-      content.time = props.task.time;
-      content.comment = props.task.comment;
+      let [c, pt] = [content, props.task];
+      [c.date, c.time, c.comment] = [pt.date, pt.time, pt.comment];
     };
     const showH = () => (content.show = !content.show);
-    const updateContent = () => emit("updateContent", content);
 
     return {
       content,
       contentH,
       showH,
-      updateContent,
     };
   },
 });

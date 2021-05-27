@@ -6,12 +6,11 @@
 
 ### 基本說明
 
-- 使用 Vue 3 + Vue Router
-- 此為練習 Vue SPA 作品
+- 使用 Vue 3 + Vue Draggable
 
 ### 心得
 
-- 希望藉由這個作品練習製作 SPA 網站。
+- 希望藉由這個作品熟悉使用 Vue Cli 開發。
 
 ### 成果展示
 
