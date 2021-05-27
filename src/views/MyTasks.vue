@@ -1,12 +1,6 @@
 <template>
   <div class="container">
-    <input
-      type="text"
-      class="newTask"
-      v-model="newTitle"
-      placeholder="Add New Task"
-      @keyup.enter="addTask"
-    />
+    <TaskNew :createTask="createTask"></TaskNew>
     <draggable
       :list="tasks"
       item-key="id"
@@ -33,15 +27,16 @@
 </template>
 
 <script>
-import { defineComponent, reactive, ref, watch } from "vue";
+import { defineComponent, reactive, watch } from "vue";
 import { useRoute } from "vue-router";
 import draggable from "vuedraggable";
+import TaskNew from "@/components/TaskNew.vue";
 import TaskItem from "@/components/TaskItem.vue";
 import LS from "@/modules/localStorage";
 
 export default defineComponent({
   name: "MyTasks",
-  components: { draggable, TaskItem },
+  components: { draggable, TaskNew, TaskItem },
   setup() {
     const filter = (completed) => {
       let flagA = route.name === "MyTasks";
@@ -54,6 +49,10 @@ export default defineComponent({
     const Idx = (value) => tasks.map((x) => x.id).indexOf(value);
     const Sort = () => tasks.sort((a, b) => b.pinning - a.pinning);
 
+    const createTask = (task) => {
+      task.id = Math.max(...tasks.map((x) => x.id)) + 1;
+      tasks.unshift(task);
+    };
     const updateState = (id, target) =>
       (tasks[Idx(id)][target] = !tasks[Idx(id)][target]);
     const updateTask = (id, task) => {
@@ -61,22 +60,6 @@ export default defineComponent({
       [ts.date, ts.time, ts.comment] = [task.date, task.time, task.comment];
     };
     const delTask = (id) => tasks.splice(Idx(id), 1);
-
-    const newTitle = ref("");
-    const addTask = () => {
-      if (newTitle.value.trim() === "") return;
-      let newTask = {
-        id: Math.max(...tasks.map((x) => x.id)) + 1,
-        title: newTitle.value,
-        date: "",
-        time: "",
-        comment: "",
-        pinning: false,
-        completed: false,
-      };
-      tasks.unshift(newTask);
-      newTitle.value = "";
-    };
 
     watch(
       tasks,
@@ -89,11 +72,10 @@ export default defineComponent({
     return {
       filter,
       tasks,
+      createTask,
       updateState,
       updateTask,
       delTask,
-      newTitle,
-      addTask,
     };
   },
 });

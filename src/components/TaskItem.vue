@@ -79,7 +79,6 @@
         </label>
         <div class="inputGroup-content">
           <textarea
-            id=""
             rows="5"
             placeholder="Type your memo here..."
             v-model="content.comment"
