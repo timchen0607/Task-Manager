@@ -67,6 +67,9 @@ export default defineComponent({
       props.createTask(Object.assign({}, newTask));
       show.value = false;
       newTask.title = "";
+      newTask.date = "";
+      newTask.time = "";
+      newTask.comment = "";
     };
 
     return {
